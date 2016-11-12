@@ -1,0 +1,106 @@
+<html>
+   <head>
+
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'css/material.min.css' %}">
+
+      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   </head>
+
+   <style>
+      .wide-card.mdl-card {
+         width: 100%;
+      }
+      .square-card.mdl-card {
+         width: 256px;
+         height: 256px;
+      }
+          
+      .image-card.mdl-card {
+         width: 256px;
+         height: 256px;   
+         background: url('html5-mini-logo.jpg') center / cover;          
+      }       
+      .image-card-image__filename {
+         color: #000;
+         font-size: 14px;
+         font-weight: bold;
+      }
+          
+          .event-card.mdl-card {
+         width: 256px;
+         height: 256px;
+         background: #3E4EB8;
+      }
+          .event-card.mdl-card__title {
+         color: #fff;
+         height: 176px;
+      }
+          
+          .event-card > .mdl-card__actions {
+         border-color: rgba(255, 255, 255, 0.2);
+         display: flex;
+         box-sizing:border-box;
+         align-items: center;
+         color: #fff;
+      }     
+</style>
+
+<body>
+   <!-- The drawer is always open in large screens. The header is always shown,  even in small screens. -->
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+         <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Kuku Mtaani</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+               <a class="mdl-navigation__link" href="" style="color:gray">Home</a>
+               <a class="mdl-navigation__link" href="" style="color:gray">About</a>      
+            </nav>
+         </div>
+      </header>
+      <div class="mdl-layout__drawer">
+         <span class="mdl-layout-title">Kuku Mtaani</span>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Home</a>
+            <a class="mdl-navigation__link" href="">Login</a>    
+         </nav>
+      </div>
+      <main class="mdl-layout__content">
+         <div class="page-content">
+         
+            <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone graybox">
+               {% block farmers %}
+               {% for farmer in object_list %}
+               <div class="wide-card mdl-card mdl-shadow--6dp">
+                     <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">{{farmer.full_name}}</h2>
+                     </div>
+                     <div class="mdl-card__supporting-text mdl-card__actions mdl-card--border">
+                      <p><b>Name:</b> {{farmer.full_name}}</p>
+                      <p><b>Place:</b> {{farmer.location}}</p>
+                      <p><b>Contact:</b> {{farmer.mobile}}</p>
+                      <p><b>Commodity:</b> {{farmer.produce}}</p>
+                      <p><b>Bio:</b></p><p>{{farmer.bio}}</p>
+                     </div>          
+               </div>
+               <br>
+               {% endfor %}   
+               {% endblock %}
+              </div>
+              <br><br>
+            </div>
+            
+        
+            
+         </div>
+      </main>
+   </div>
+</body>
+</html>
